@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang=fr>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <title>Liste des Insectes</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ path('homepage') }}">Home</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('list') }}">Insectes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('user') }}">User</a>
+            </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ logout_path() }}">Logout</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+<h2>Liste des Insectes</h2>
+
+<p> Cliquer pour Modifer</p>
+
+<a class="btn btn-primary" href="{{ path('add') }}">Add</a>
+
+
+{% for product in product %}
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action flex-column align-items-start" href="{{ path('product_edit', {'id':product.id}) }}">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ product.name }}</h5>
+        </div>
+            <p class="mb-1">{{ product.age }} - {{ product.family }} - {{ product.race }} - {{ product.food }}</p>
+        </a>
+        <a class="btn btn-danger" href="{{ path('product_delete', {'id':product.id}) }}">Supprimer</a>
+    </div>
+{% endfor %}
+
+</div>
+</body>
+</html>
