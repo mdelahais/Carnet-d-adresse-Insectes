@@ -21,12 +21,20 @@
                 </p>
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <div class="alert alert-dark" role="alert">
+                <p>Mes Informations //
+                    <a href="{{ path('modify', {'id':app.user.id}) }}">{{ app.user.username }}</a>
+                </p>
+            </div>
+
             <div class="alert alert-dark" role="alert">
                 <p>Déconnecter vous juste ici --->
                 <a href="{{ logout_path() }}" class="btn btn-danger">Logout</a>
                 </p>
             </div>
             {% endif %}
+
         </div>
         {% block javascripts %}{% endblock %}
     </body>

@@ -12,32 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * @Route("/add", name="add")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function addAction(Request $request){
-
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted()){
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($product);
-            $em->flush();
-
-            return $this->redirectToRoute('list');
-        }
-
-        $formView = $form->createView();
-
-        return $this->render('productAdd.html.twig' , array('form'=>$formView));
-    }
 
     /**
      * @Route("/list", name="list")

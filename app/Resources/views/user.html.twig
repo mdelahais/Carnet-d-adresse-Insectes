@@ -25,6 +25,7 @@
                 <a class="nav-link" href="{{ logout_path() }}">Logout</a>
             </li>
             {% endif %}
+
         </ul>
     </div>
 </nav>
@@ -32,16 +33,18 @@
 
 <h2>User Info</h2>
 
-{% for user in user %}
+{% for user in users %}
+
     <div class="list-group">
-        <a href="{{ path('modify', {'id':user.id}) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ user.username }}</h5>
+                <a href="{{ path('UserAdd', {id:user.id}) }}" class="btn btn-primary">Ajouter</a>
             </div>
+            <h1></h1>
             <p class="mb-1">{{ user.email }} - {{ user.age }} - {{ user.family }} - {{ user.race }} - {{ user.food }}</p>
-        </a>
+        </div>
     </div>
-
 {% endfor %}
 </div>
 </body>
